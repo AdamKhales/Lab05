@@ -68,6 +68,7 @@ public class Lab05Task2 extends Application{
         slider.setOrientation(Orientation.HORIZONTAL);
         slider.setShowTickMarks(true);
         slider.setShowTickLabels(true);
+        slider.setMajorTickUnit(5);
         
         Button clearBill = new Button("Clear bill");
         Label subTotal = new Label();
@@ -121,7 +122,7 @@ public class Lab05Task2 extends Application{
         });
         
         slider.valueProperty().addListener((observeable, oldvalue, newvalue) -> {
-            double tipAmount  = slider.getValue() * this.subTotalAmount;
+            double tipAmount  = slider.getValue()/100 * this.subTotalAmount;
             tip.setText(String.format("Tip: %.2f$", tipAmount));
             total.setText(String.format("Total: %.2f$", subTotalAmount * 1.15 + tipAmount));
         });
