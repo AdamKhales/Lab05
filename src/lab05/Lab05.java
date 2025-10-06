@@ -104,7 +104,7 @@ public class Lab05 extends Application{
         gp.add(radioBox, 4, 0);
         gp.add(message, 2, 2, 2,1);
         
-        
+        stage.setTitle("Bag Order Form");
         Scene scene = new Scene(gp, 800,300);
         stage.setScene(scene);
         stage.show();
