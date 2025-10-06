@@ -53,19 +53,43 @@ public class Lab05 extends Application{
         ComboBox<Integer> cb = new ComboBox<>();
         cb.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
         cb.setValue(1);
+        Label message = new Label();
         
         RadioButton small = new RadioButton("Small");
         RadioButton medium = new RadioButton("Medium");
         RadioButton large = new RadioButton("Large");
         
+        
         ToggleGroup toggleGroup = new ToggleGroup();
         small.setToggleGroup(toggleGroup);
         medium.setToggleGroup(toggleGroup);
         large.setToggleGroup(toggleGroup);
+        small.setSelected(true);
         
         Button order = new Button("Order");
         order.setPrefWidth(100);
+        order.setOnAction(e -> {
+            int value = cb.getValue();
+            String bag = bagList.getSelectionModel().getSelectedItem();
+            String size = ((RadioButton) toggleGroup.getSelectedToggle()).getText();
+            if(bag != null) {
+            message.setText(String.format("You ordered %d %s %s bag(s)", value,size,bag));
+            message.setStyle("");
+            } else {
+                message.setStyle("-fx-text-fill: red;");
+                message.setText("Please select a bag option");
+            }
+           
+        });
         Button clear = new Button("Clear");
+        clear.setOnAction(e -> {
+            message.setText("");
+            small.setSelected(true);
+            cb.setValue(1);
+            bagList.getSelectionModel().select(0);
+        });
+        clear.setPrefWidth(100);
+        
         gp.setPadding(new Insets(10,10,10,10));
         gp.setHgap(10);
         gp.setHgap(10);
@@ -78,6 +102,7 @@ public class Lab05 extends Application{
         VBox radioBox = new VBox(10,small,medium,large);
         radioBox.setAlignment(Pos.CENTER_LEFT);
         gp.add(radioBox, 4, 0);
+        gp.add(message, 2, 2, 2,1);
         
         
         Scene scene = new Scene(gp, 800,300);
