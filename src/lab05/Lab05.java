@@ -19,11 +19,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+//https://github.com/AdamKhales/Lab05.git
 
-/**
- *
- * @author 2493077
- */
 public class Lab05 extends Application{
 
     /**
